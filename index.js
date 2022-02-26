@@ -16,3 +16,19 @@ function buyCake() {
         info: 'First redux action'
     }
 }
+
+// Redux rule: your app's state has to be represented by a single object 
+const initialState = {
+    numOfCakes: 10
+}
+// this is a reducer functn below
+const reducer = (state = initialState, action) => {
+    // will return the new state here based on the current state and the action
+    switch(action.type) {
+        case BUY_CAKE: return {
+            ...state,
+            numOfCakes: state.numOfCakes - 1
+        }
+        default: return state
+    }
+}
