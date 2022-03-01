@@ -20,3 +20,8 @@ an action is an object that has a type property
 
 - getState gives our application access to th state it holds
 - the subscribe method accepts a function as it's param which is executed any time the state in the redux-store
+
+
+# Middleware
+- provides a third-party extension point between dispatching an action, and the moment ot reaches the reducer
+- used for logging, crash-reporting, performing asynchronous tasks etc
