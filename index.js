@@ -3,7 +3,7 @@
 // but this app is a simple nodejs app so we'll have to chagne the syntax from import into const redux
 const redux = require('redux')
 const creatStore = redux.createStore
-
+const combineReducers = redux.combineReducers
 
 // this indicates the type of the action (string)
 const BUY_CAKE = 'BUY_CAKE';
@@ -33,18 +33,46 @@ function buyIceCream() {
 
 // Redux rule: your app's state has to be represented by a single object 
 // state of our application
-const initialState = {
-    numOfCakes: 10,
+// const initialState = {
+//     numOfCakes: 10,
+//     numOfIceCreams: 20
+// }
+// we're gonna split our state and the reducer (2 objects)
+const initialCakeState = {
+    numOfCakes: 10
+}
+const initialIceCreamState = {
     numOfIceCreams: 20
 }
 // this is a reducer functn below
-const reducer = (state = initialState, action) => {
+// const reducer = (state = initialState, action) => {
+//     // will return the new state here based on the current state and the action
+//     switch(action.type) {
+//         case BUY_CAKE: return {
+//             ...state,
+//             numOfCakes: state.numOfCakes - 1
+//         }
+//         case BUY_ICECREAM: return {
+//             ...state,
+//             numOfIceCreams: state.numOfIceCreams - 1
+//         }
+//         default: return state
+//     }
+// }
+// similarly 2 reducers (2 items and 2 shopkeepers)
+const cakeReducer = (state = initialCakeState, action) => {
     // will return the new state here based on the current state and the action
     switch(action.type) {
         case BUY_CAKE: return {
             ...state,
             numOfCakes: state.numOfCakes - 1
         }
+        default: return state
+    }
+}
+const iceCreamReducer = (state = initialIceCreamState, action) => {
+    // will return the new state here based on the current state and the action
+    switch(action.type) {
         case BUY_ICECREAM: return {
             ...state,
             numOfIceCreams: state.numOfIceCreams - 1
@@ -53,9 +81,14 @@ const reducer = (state = initialState, action) => {
     }
 }
 
+const rootReducer = combineReducers({
+    cake: cakeReducer,
+    iceCream: iceCreamReducer
+})
+
 // this createStore function accepts a param that is the reducer function
 // Resp1: Holding the application's state
-const store = creatStore(reducer)
+const store = creatStore(rootReducer)
 console.log('Initial state', store.getState())
 
 // Resp4: Allow the app to subscribe the changes in the store
