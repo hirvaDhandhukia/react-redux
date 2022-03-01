@@ -2,8 +2,14 @@
 // import redux from 'redux';
 // but this app is a simple nodejs app so we'll have to chagne the syntax from import into const redux
 const redux = require('redux')
+const reduxLogger = require('redux-logger')
+
 const creatStore = redux.createStore
 const combineReducers = redux.combineReducers
+const applyMiddleware = redux.applyMiddleware
+// the constant 'logger' is the middleware in our app
+// we'll use applyMiddleware function to apply this middleware to our redux app
+const logger = reduxLogger.createLogger()
 
 // this indicates the type of the action (string)
 const BUY_CAKE = 'BUY_CAKE';
@@ -88,14 +94,15 @@ const rootReducer = combineReducers({
 
 // this createStore function accepts a param that is the reducer function
 // Resp1: Holding the application's state
-const store = creatStore(rootReducer)
+const store = creatStore(rootReducer, applyMiddleware(logger))
 console.log('Initial state', store.getState())
 
 // Resp4: Allow the app to subscribe the changes in the store
 // let's log our updated state here using the subscribe method
 const unsubscribe = store.subscribe(
-    () => console.log('Updated state', store.getState())
+    () => {}
 )
+// i deleted the console log because now we have the middleware to handle the logs
 
 // Resp3: store provides a dispatch method to update the state
 store.dispatch(buyCake())
@@ -107,10 +114,3 @@ store.dispatch(buyIceCream())
 
 // the final part is to unsubscribe from the store by calling returned by the subscribe method
 unsubscribe()
-
-
-
-
-
-
-// multiple reducers

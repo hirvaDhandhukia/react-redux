@@ -25,3 +25,7 @@ an action is an object that has a type property
 # Middleware
 - provides a third-party extension point between dispatching an action, and the moment ot reaches the reducer
 - used for logging, crash-reporting, performing asynchronous tasks etc
+> How to use a middleware in a redux?
+> 1. import applyMiddleware
+> 2. have it as an argument to the createStore 
+> 3. and pass in the middleware to the applyMiddleware method
