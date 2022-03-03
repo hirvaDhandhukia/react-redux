@@ -1,5 +1,6 @@
 # Action
-an action is an object that has a type property
+- an action is an object that has a type property
+- an ation describes what happened and it is the reducer's job to return the new state based on that action.
 
 # Reducers 
 - specify how the app's state changes in response to actions sent to the store. 
@@ -29,3 +30,8 @@ an action is an object that has a type property
 > 1. import applyMiddleware
 > 2. have it as an argument to the createStore 
 > 3. and pass in the middleware to the applyMiddleware method
+
+
+# Async Actions
+- actions that don't occur at the same time in a store
+- Asynchronous API calls to fetch data from an end point and use that data in your application
