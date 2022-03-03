@@ -83,6 +83,7 @@ const fetchUsers = () => {
 // next: create the redux store
 // we will apply the redux-thunk middleware to our redux store
 // redux-thunk is used to Define async action creators by just putting the thunkMiddleware as an argument to the store's middleware
+// what this allows is for an action creator to return a function instead of and action
 const store = createStore(reducer, applyMiddleware(thunkMiddleware))
 
 // finally at last we subscribe to our store and then dispatch the action creator
