@@ -35,3 +35,4 @@
 # Async Actions
 - actions that don't occur at the same time in a store
 - Asynchronous API calls to fetch data from an end point and use that data in your application
+/
